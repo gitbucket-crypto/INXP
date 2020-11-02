@@ -1,0 +1,62 @@
+input[type=button], input[type=submit], input[type=reset] {
+                      background-color:#0099cc;
+                      background: #0099cc;
+                      border: none;
+                      text-decoration: none;
+                      margin: 2px 2px;                
+                      padding: 10px 24px!important;
+                      cursor: pointer;vertical-align: middle;
+                      outline: 0px solid transparent;
+                      width: 23px!important; display: inline-block;
+                    }
+
+                    input[type=button]:hover
+                    {
+                     background-color: #0099cc!important;
+
+                   }
+                   #popUpYes 
+                   {
+
+                    background-color: #0099cc;
+                    color:white;
+                  }
+                  #popUpYes:hover {
+                    background-color:#0099cc;
+                    color: white;
+                  }
+
+
+/**
+
+ <style type="text/css">
+                    input[type=button], input[type=submit], input[type=reset] {
+                      background-color:#0099cc;
+                      background: #0099cc;
+                      border: none;
+                      text-decoration: none;
+                      margin: 2px 2px;                
+                      padding: 10px 24px!important;
+                      cursor: pointer;vertical-align: middle;
+                      outline: 0px solid transparent;
+                      width: 23px!important; display: inline-block;
+                    }
+
+                    input[type=button]:hover
+                    {
+                     background-color: #0099cc!important;
+
+                   }
+                   #popUpYes 
+                   {
+
+                    background-color: #0099cc;
+                    color:white;
+                  }
+                  #popUpYes:hover {
+                    background-color:#0099cc;
+                    color: white;
+                  }
+                </style>
+
+**/

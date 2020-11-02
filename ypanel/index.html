@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login YPanel</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="meta-inf/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="meta-inf/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="meta-inf/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="meta-inf/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="meta-inf/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="meta-inf/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="meta-inf/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="meta-inf/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="meta-inf/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="meta-inf/css/util.css">
+	<link rel="stylesheet" type="text/css" href="meta-inf/css/main.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="meta-inf/js/lock.js"></script>
+<!--===============================================================================================-->
+<script>
+jQuery(document).ready(function()
+{
+  			var btn = $("#loginBTN");
+  			btn.on("click", function()
+			{	  			
+  			jQuery.ajax
+				({
+  					url: "web-inf/enter.exec.php",
+  					type: "POST",  /*method*/
+  					data: $("#login").serialize(),
+  					success: function(response)
+  					{	
+						var obj = JSON.parse(response);
+
+						switch(obj.id)
+						{
+							case 10:case '10': alert(obj.msg); break;
+							case 20:case '20': alert(obj.mail); $("#login")[0].reset(); window.location='active-inf/dashboard.php'; break;
+						}
+						
+  					}
+				});
+				return false;
+  			});
+});
+</script>
+<!--===============================================================================================-->
+<script>
+jQuery(document).ready(function()
+{
+  			var btn = $("#createBTN");
+  			btn.on("click", function()
+			{	  			
+  			jQuery.ajax
+				({
+  					url: "web-inf/add.user.class.php",
+  					type: "POST",  /*method*/
+  					data: $("#create").serialize(),
+  					success: function(response)
+  					{	
+						var obj = JSON.parse(response);
+
+						switch(obj.id)
+						{
+							case 10:case '10': alert(obj.msg); break;
+							case 20:case '20': alert(obj.mail); $("#create")[0].reset();break;
+						}
+						
+  					}
+				});
+				return false;
+  			});
+});
+</script>
+<!--===============================================================================================-->
+<script>
+jQuery(document).ready(function()
+{
+  			var btn = $("#recoverBTN");
+  			btn.on("click", function()
+			{	  			
+  			jQuery.ajax
+				({
+  					url: "web-inf/recovery.user.class.php",
+  					type: "POST",  /*method*/
+  					data: $("#recover").serialize(),
+  					success: function(response)
+  					{	
+						var obj = JSON.parse(response);
+
+						switch(obj.id)
+						{
+							case 10:case '10': alert(obj.msg); break;
+							case 20:case '20': alert(obj.mail); $("#recover")[0].reset();break;
+						}
+						
+  					}
+				});
+				return false;
+  			});
+});
+</script>
+
+<!--===============================================================================================-->
+</head>
+<body onload="onload();" data-spy="scroll" data-target=".site-navbar-target" oncontextmenu="return false"
+
+    ondragstart="return false" onmouseover="window.status='..message perso .. '; return true;">
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image: url(meta-inf/images/bg-01.jpg);">
+					<span class="login100-form-title-1">
+						<div id="s1">Login</div>
+						<div id="c1" style="visibility: hidden; display:none;">Cadastrar</div>
+						<div id="r1" style="visibility: hidden; display:none;">Recuperar</div>
+					</span>
+				</div>
+				<div id="s2">
+				<form class="login100-form validate-form" method="POST" autocomplete="off"  id="login">
+					<input type="hidden" autocomplete="false">
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Por favor preencha o e-mail. ">
+						<span class="label-input100">E-mail</span>
+						<input class="input100" type="text" name="emails1"id="emails1" placeholder="E-mail">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Por favor preencha a senha">
+						<span class="label-input100">Password</span>
+						<input class="input100" type="password" name="pass1" id="pass1" placeholder="Senha">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="flex-sb-m w-full p-b-30">
+						<div class="contact100-form-checkbox">
+							<a onclick="cadastrar()" class="txt1">
+								Cadastrar
+							</a>
+						</div>
+
+						<div class="contact100-form-checkbox">
+							<a onclick="recovery()" class="txt1">
+								Esqueceu o Usuario/Senha
+							</a>
+						</div>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<input type="submit" class="login100-form-btn" value="Login" id="loginBTN">&nbsp;
+						 <input type="reset" class="login100-form-btn" value="Cancelar">		
+						</input>
+					</div>
+				</form>
+				</div>
+				<!-- ==============================================================================================-->
+				<div id="c2" style="visibility: hidden; display:none;">
+				<form class="login100-form validate-form" method="POST" autocomplete="off" id='create' name='create'> 
+					<input type="hidden" autocomplete="false" >
+					<div class="wrap-input100 validate-input m-b-26"  data-validate="Por favor preencha o nome.">
+						<span class="label-input100">Nome Completo</span>
+						<input class="input100" type="text" name="namec1"id="namec1" placeholder="Nome">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Por favor preencha o email.">
+						<span class="label-input100">Email</span>
+						<input class="input100" type="email" name="emailc1"id="emailc1" placeholder="E-mail">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Por favor preencha o nome de usuario.">
+						<span class="label-input100">Nome usuario</span>
+						<input class="input100" type="text" name="unamec1"id="unamec1" placeholder="Username">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Por favor preencha a senha">
+						<span class="label-input100">Senha</span>
+						<input class="input100" type="password" name="passc1" id="passc1" placeholder="Senha">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Por favor preencha a senha novamente.">
+						<span class="label-input100">Confirmação de senha</span>
+						<input class="input100" type="password" name="passc2" id="passc2" placeholder="Confirme a Senha">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="flex-sb-m w-full p-b-30">
+						<div class="contact100-form-checkbox">
+							<a onclick="login()" class="txt1">
+								Fazer Login
+							</a>
+						</div>
+
+						<div class="contact100-form-checkbox">
+							<a onclick="recovery()" class="txt1">
+								Esqueceu o Usuario/Senha
+							</a>
+						</div>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<input type="submit" class="login100-form-btn" value="Cadastrar" id='createBTN'>&nbsp;
+						<input type="reset" class="login100-form-btn" value="Cancelar">	
+						</input>
+					</div>
+				</form></div>
+				<!-- ==============================================================================================-->
+				<div id="r2" style="visibility: hidden; display:none;">
+				<form class="login100-form validate-form" method="POST" autocomplete="off" id='recover' name='recover'>
+					<input type="hidden" autocomplete="false">
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Por favor preencha o e-mail.">
+						<span class="label-input100">E-mail</span>
+						<input class="input100" type="text" name="emailr1"id="emailr1" placeholder="E-mail">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Por favor preencha o uername">
+						<span class="label-input100">Usuario</span>
+						<input class="input100" type="text" name="user1" id="user1" placeholder="Username">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="flex-sb-m w-full p-b-30">
+						<div class="contact100-form-checkbox">
+							<a onclick="cadastrar()" class="txt1">
+								Cadastrar
+							</a>
+						</div>
+
+						<div>
+							<a onclick="login()" class="txt1">
+								Logar-se
+							</a>
+						</div>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<input type="submit" class="login100-form-btn" id='recoverBTN' name='recoverBTN' value="Recuperar">&nbsp;
+						<input type="reset" class="login100-form-btn" value="Cancelar">	
+						</input>
+					</div>
+				</form></div>
+			</div>
+		</div>
+	</div>
+	
+<!--===============================================================================================-->
+	<!--(<script src="meta-inf/vendor/jquery/jquery-3.2.1.min.js"></script>)-->
+<!--===============================================================================================-->
+	<script src="meta-inf/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="meta-inf/vendor/bootstrap/js/popper.js"></script>
+	<script src="meta-inf/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="meta-inf/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="meta-inf/vendor/daterangepicker/moment.min.js"></script>
+	<script src="meta-inf/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="meta-inf/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="meta-inf/js/main.js"></script>
+	<script type="text/javascript">
+		function cadastrar()
+		{
+			$("#s2").css("visibility", "hidden");
+			$("#s1").css("visibility", "hidden");
+			$("#s2").removeClass("active").addClass("hidden");
+			$("#s1").removeClass("active").addClass("hidden");
+			$("#s1").css("display", "none");
+			$("#s2").css("display", "none");
+			//-------------------------------------------------
+			$("#c1").css("visibility", "visible");
+			$("#c1").css("display", "block");	
+			$("#c1").removeClass("hidden").addClass("active");
+			$("#c2").css("visibility", "visible");
+			$("#c2").css("display", "block");	
+			$("#c2").removeClass("hidden").addClass("active");
+			//-------------------------------------------------
+			$("#r2").css("visibility", "hidden");
+			$("#r1").css("visibility", "hidden");
+			$("#r2").removeClass("active").addClass("hidden");
+			$("#r1").removeClass("active").addClass("hidden");
+			$("#r1").css("display", "none");
+			$("#r2").css("display", "none");
+		}
+		
+		function recovery()
+		{
+			$("#r1").css("visibility", "visible");
+			$("#r1").css("display", "block");	
+			$("#r1").removeClass("hidden").addClass("active");
+			$("#r2").css("visibility", "visible");
+			$("#r2").css("display", "block");	
+			$("#r2").removeClass("hidden").addClass("active");	
+			//-------------------------------------------------
+			$("#s2").css("visibility", "hidden");
+			$("#s1").css("visibility", "hidden");
+			$("#s2").removeClass("active").addClass("hidden");
+			$("#s1").removeClass("active").addClass("hidden");
+			$("#s1").css("display", "none");
+			$("#s2").css("display", "none");
+			//-------------------------------------------------
+			$("#c2").css("visibility", "hidden");
+			$("#c1").css("visibility", "hidden");
+			$("#c2").removeClass("active").addClass("hidden");
+			$("#c1").removeClass("active").addClass("hidden");
+			$("#c1").css("display", "none");
+			$("#c2").css("display", "none");
+		}
+		
+		function login()
+		{
+			//-------------------------------------------------
+			$("#c2").css("visibility", "hidden");
+			$("#c1").css("visibility", "hidden");
+			$("#c2").removeClass("active").addClass("hidden");
+			$("#c1").removeClass("active").addClass("hidden");
+			$("#c1").css("display", "none");
+			$("#c2").css("display", "none");
+			//-------------------------------------------------
+			$("#s1").css("visibility", "visible");
+			$("#s1").css("display", "block");	
+			$("#s1").removeClass("hidden").addClass("active");
+			$("#s2").css("visibility", "visible");
+			$("#s2").css("display", "block");	
+			$("#s2").removeClass("hidden").addClass("active");
+				//-------------------------------------------------
+			$("#r2").css("visibility", "hidden");
+			$("#r1").css("visibility", "hidden");
+			$("#r2").removeClass("active").addClass("hidden");
+			$("#r1").removeClass("active").addClass("hidden");
+			$("#r1").css("display", "none");
+			$("#r2").css("display", "none");
+		}
+		//------------------------------------------------------------------------------------------
+	</script>
+	<script type="text/javascript">
+	
+	</script>
+
+</body>
+</html>
